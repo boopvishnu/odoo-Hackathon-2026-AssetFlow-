@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* left branding side */
+.brand-panel {
+    flex: 1;
+    background-color: #2b6cb0;
+    color: white;
+    padding: 50px 40px;
+}
+
+.brand-logo {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.brand-tagline {
+    font-size: 14px;
+    color: #dbe8f7;
+    margin-bottom: 35px;
+}
+
+.feature-list p {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+/* right side form */
+.form-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f7f9fc;
+    padding: 30px 20px;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 350px;
+}
+
+.auth-box h2 {
+    color: #1a365d;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.sub-text {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2b6cb0;
+}
+
+.toggle-eye {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: 12px;
+    color: #2b6cb0;
+    cursor: pointer;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.form-footer a {
+    color: #2b6cb0;
+    text-decoration: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #2b6cb0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #1a365d;
+}
+
+.signup-text {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #777;
+}
+
+.signup-text a {
+    color: #2b6cb0;
+    text-decoration: none;
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 900px) {
+    .brand-panel {
+        padding: 40px 30px;
+    }
+
+    .brand-logo {
+        font-size: 28px;
+    }
+
+    .feature-list p {
+        font-size: 14px;
+    }
+}
+
+/* ---------- mobile: stack panels ---------- */
+@media (max-width: 700px) {
+    .page-wrapper {
+        flex-direction: column;
+    }
+
+    .brand-panel {
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .brand-logo {
+        font-size: 26px;
+    }
+
+    .brand-tagline {
+        margin-bottom: 20px;
+    }
+
+    .feature-list {
+        display: none; /* hiding on small screens, form space priority */
+    }
+
+    .form-panel {
+        padding: 30px 15px;
+    }
+
+    .auth-box h2 {
+        font-size: 20px;
+    }
+}
+
+/* ---------- very small phones ---------- */
+@media (max-width: 380px) {
+    .brand-logo {
+        font-size: 22px;
+    }
+
+    .auth-box h2 {
+        font-size: 18px;
+    }
+
+    .submit-btn {
+        font-size: 14px;
+    }
+}
