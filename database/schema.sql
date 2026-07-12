@@ -1,30 +1,25 @@
--- MySQL DDL script to initialize Project
+create database if not exists booking_system;
+use booking_system;
 
-CREATE DATABASE IF NOT EXISTS booking_system;
-USE booking_system;
-
--- 1. Departments Table
-CREATE TABLE IF NOT EXISTS departments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    code VARCHAR(10) NOT NULL UNIQUE
+create table if not exists departments (
+    id int auto_increment primary key,
+    name varchar(100) not null unique,
+    code varchar(10) not null unique
 );
 
--- 2. Users Table
-CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fullname VARCHAR(150) NOT NULL,
-    email VARCHAR(150) NOT NULL UNIQUE,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL, -- Storing hashed password
-    role ENUM('admin', 'asset_manager', 'dept_head', 'employee') NOT NULL DEFAULT 'employee',
-    department_id INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL
+create table if not exists users (
+    id int auto_increment primary key,
+    fullname varchar(150) not null,
+    email varchar(150) not null unique,
+    username varchar(50) not null unique,
+    password_hash varchar(255) not null,
+    role enum('admin', 'asset_manager', 'dept_head', 'employee') not null default 'employee',
+    department_id int,
+    created_at timestamp default current_timestamp,
+    foreign key (department_id) references departments(id) on delete set null
 );
 
--- Seed Initial Default Departments
-INSERT IGNORE INTO departments (id, name, code) VALUES 
+insert ignore into departments (id, name, code) values 
 (1, 'Information Technology', 'IT'),
 (2, 'Human Resources', 'HR'),
 (3, 'Finance', 'FIN'),
