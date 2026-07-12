@@ -1,84 +1,80 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import apirouter, httpexception, status
 import hashlib
 import mysql.connector
 from backend.db import get_db
-from backend.schemas.auth import SignupRequest, LoginRequest, UserSessionResponse
+from backend.schemas.auth import signuprequest, loginrequest, usersessionresponse
 
-router = APIRouter(prefix="/api", tags=["Authentication"])
+router = apirouter(prefix="/api", tags=["authentication"])
 
-def hash_password(password: str) -> str:
-    """Hash password using SHA-256 (0-dependency helper)."""
+def make_hash(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
 
 @router.post("/signup", response_model=dict)
-def signup(data: SignupRequest):
+def register_user(data: signuprequest):
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
-        # 1. Check if username or email already exists
-        cursor.execute("SELECT id FROM users WHERE username = %s OR email = %s", (data.username, data.email))
+        cursor.execute("select id from users where username = %s or email = %s", (data.username, data.email))
         if cursor.fetchone():
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Username or Email already registered."
+            raise httpexception(
+                status_code=status.http_400_bad_request,
+                detail="username or email already registered."
             )
         
-        # 2. Verify department_id exists if provided
         if data.department_id is not None:
-            cursor.execute("SELECT id FROM departments WHERE id = %s", (data.department_id,))
+            cursor.execute("select id from departments where id = %s", (data.department_id,))
             if not cursor.fetchone():
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="Invalid department ID."
+                raise httpexception(
+                    status_code=status.http_400_bad_request,
+                    detail="invalid department id."
                 )
 
-        # 3. Hash password and insert user
-        pwd_hash = hash_password(data.password)
+        pwd_hash = make_hash(data.password)
         query = """
-            INSERT INTO users (fullname, email, username, password_hash, role, department_id)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            insert into users (fullname, email, username, password_hash, role, department_id)
+            values (%s, %s, %s, %s, %s, %s)
         """
         cursor.execute(query, (data.fullname, data.email, data.username, pwd_hash, data.role, data.department_id))
         db.commit()
         
-        return {"status": "Success", "message": "User registered successfully!"}
+        return {"status": "success", "message": "user registered successfully!"}
     
     except mysql.connector.Error as err:
         db.rollback()
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Database error: {str(err)}"
+        raise httpexception(
+            status_code=status.http_500_internal_server_error,
+            detail=f"database error: {str(err)}"
         )
     finally:
         cursor.close()
         db.close()
 
-@router.post("/login", response_model=UserSessionResponse)
-def login(data: LoginRequest):
+@router.post("/login", response_model=usersessionresponse)
+def login_user(data: loginrequest):
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
-        pwd_hash = hash_password(data.password)
+        pwd_hash = make_hash(data.password)
         query = """
-            SELECT id, fullname, email, username, role, department_id 
-            FROM users 
-            WHERE username = %s AND password_hash = %s
+            select id, fullname, email, username, role, department_id 
+            from users 
+            where username = %s and password_hash = %s
         """
         cursor.execute(query, (data.username, pwd_hash))
         user = cursor.fetchone()
         
         if not user:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Incorrect username or password."
+            raise httpexception(
+                status_code=status.http_401_unauthorized,
+                detail="incorrect username or password."
             )
             
         return user
         
     except mysql.connector.Error as err:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Database error: {str(err)}"
+        raise httpexception(
+            status_code=status.http_500_internal_server_error,
+            detail=f"database error: {str(err)}"
         )
     finally:
         cursor.close()
