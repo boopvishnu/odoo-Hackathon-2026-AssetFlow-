@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sign in · AssetFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./css/login.css" />
+</head>
+<body>
+<main class="stage">
+  <aside class="stage__aside">
+    <div class="brand">
+      <span class="brand__mark">AF</span>
+      <span class="brand__name">AssetFlow<span>Enterprise Registry</span></span>
+    </div>
+
+    <div class="showcase" aria-hidden="true">
+      <div class="showcase__head">
+        <span><span class="dot"></span>Your queue</span>
+        <span>3 pending</span>
+      </div>
+      <div class="tile"><span class="tile__tag">REQ-118</span><span class="tile__label">Transfer approval · Ops → Eng</span><span class="tile__meta">Today</span></div>
+      <div class="tile"><span class="tile__tag">BKG-042</span><span class="tile__label">Camera booking · Fri 14:00</span><span class="tile__meta">Confirm</span></div>
+      <div class="tile"><span class="tile__tag">MNT-007</span><span class="tile__label">Projector PM overdue</span><span class="tile__meta">2 days</span></div>
+      <div class="tile"><span class="tile__tag">AUD-Q3</span><span class="tile__label">Quarterly audit sign-off</span><span class="tile__meta">Sep 30</span></div>
+    </div>
+
+    <div class="aside-copy">
+      <h1>Welcome back<br/>to the ledger.</h1>
+      <p>Your pending approvals, transfers and bookings are waiting inside. Pick up where the last audit left off.</p>
+    </div>
+
+  </aside>
+
+  <section class="stage__main">
+    <div class="topbar">
+      <span></span>
+      <span>New here? <a href="./signup.html">Create an account</a></span>
+    </div>
+
+    <div class="form-wrap">
+      
+      <h2 class="title">Sign in.</h2>
+      <p class="lede">Use the credentials your administrator issued. Sessions expire quietly after thirty days.</p>
+
+      <form class="form" id="loginForm" data-kind="login" novalidate>
+        <div class="field" data-field="username">
+          <label>Username</label>
+          <input type="text" name="username" required placeholder="p.ramanathan" autocomplete="username" />
+          <div class="msg" data-error></div>
+        </div>
+
+        <div class="field" data-field="password">
+          <label>Password <span class="hint"><a href="./forgot.html" style="color:inherit">forgot?</a></span></label>
+          <input type="password" name="password" minlength="4" required placeholder="••••••••" autocomplete="current-password" />
+          <div class="msg" data-error></div>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" />
+          <span>Keep me signed in on this device for 8 hours.</span>
+        </label>
+
+        <div class="actions">
+          <button type="submit" class="btn" id="submitBtn">
+            <span>Enter Registry</span>
+            <span class="btn__arrow" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="divider">Trouble signing in?</div>
+        <p class="aside-link">Your account may be pending activation by an Admin. Requests submitted after 23:30 IST are typically reviewed the next working day.</p>
+
+        <div class="form-status" role="status" aria-live="polite" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-mute);margin-top:8px;"></div>
+      </form>
+    </div>
+
+  </section>
+</main>
+
+<script src="./js/script.js"></script>
+</body>
+</html>

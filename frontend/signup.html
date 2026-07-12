@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Create account · AssetFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./css/signup.css" />
+</head>
+<body>
+<main class="stage">
+  <aside class="stage__aside">
+    <div class="brand">
+      <span class="brand__mark">AF</span>
+      <span class="brand__name">AssetFlow<span>Enterprise Registry</span></span>
+    </div>
+
+    <div class="showcase" aria-hidden="true">
+      <div class="showcase__head">
+        <span><span class="dot"></span>Live registry</span>
+        <span>Updated 2 min ago</span>
+      </div>
+      <div class="tile"><span class="tile__tag">AF-0421</span><span class="tile__label">MacBook Pro 14"</span><span class="tile__meta">Allocated</span></div>
+      <div class="tile"><span class="tile__tag">AF-0187</span><span class="tile__label">Epson Projector</span><span class="tile__meta">Available</span></div>
+      <div class="tile"><span class="tile__tag">AF-0733</span><span class="tile__label">Canon EOS R6</span><span class="tile__meta">Booked · Fri</span></div>
+      <div class="tile"><span class="tile__tag">AF-0091</span><span class="tile__label">Fleet Vehicle 03</span><span class="tile__meta">Maintenance</span></div>
+    </div>
+
+    <div class="aside-copy">
+      <h1>Every asset,<br/>accounted for.</h1>
+      <p>One ledger for acquisition, allocation, maintenance and disposal. No spreadsheets, no phantom projectors.</p>
+    </div>
+
+  </aside>
+
+  <section class="stage__main">
+    <div class="topbar">
+      <span></span>
+      <span>Already have an account? <a href="./login.html">Sign in</a></span>
+    </div>
+
+    <div class="form-wrap">
+      
+      <h2 class="title">Create your account.</h2>
+      <p class="lede">Six fields, about ninety seconds. You'll receive a ledger scoped to your department.</p>
+
+      <form class="form" id="signupForm" data-kind="signup" novalidate>
+        <div class="field" data-field="full_name">
+          <label>Full name <span class="hint">as printed on your ID</span></label>
+          <input type="text" name="full_name" maxlength="150" required placeholder="Priya Ramanathan" autocomplete="name" />
+          <div class="msg" data-error></div>
+        </div>
+
+        <div class="field" data-field="email">
+          <label>Work email</label>
+          <input type="email" name="email" required placeholder="priya@company.io" autocomplete="email" />
+          <div class="msg" data-error></div>
+        </div>
+
+        <div class="row-2">
+          <div class="field" data-field="username">
+            <label>Username <span class="hint">3–50</span></label>
+            <input type="text" name="username" minlength="3" maxlength="50" required placeholder="p.ramanathan" autocomplete="username" />
+            <div class="msg" data-error></div>
+          </div>
+
+          <div class="field" data-field="password">
+            <label>Password <span class="hint">min 4</span></label>
+            <input type="password" name="password" minlength="4" required placeholder="••••••••" autocomplete="new-password" />
+            <div class="strength" data-level="0" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="msg" data-error></div>
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field" data-field="role">
+            <label>Role</label>
+            <select name="role" required>
+              <option value="" disabled selected>Choose one…</option>
+              <option value="admin">Admin</option>
+              <option value="asset_manager">Asset Manager</option>
+              <option value="employee">Employee</option>
+            </select>
+            <div class="msg" data-error></div>
+          </div>
+
+          <div class="field" data-field="department_id">
+            <label>Department</label>
+            <select name="department_id" required>
+              <option value="" disabled selected>Choose one…</option>
+              <option value="1">Operations</option>
+              <option value="2">Engineering</option>
+              <option value="3">Finance</option>
+              <option value="4">Facilities</option>
+            </select>
+            <div class="msg" data-error></div>
+          </div>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" required />
+          <span>I agree to the acceptable-use policy and understand every asset action is logged for audit.</span>
+        </label>
+
+        <div class="actions">
+          <button type="submit" class="btn" id="submitBtn">
+            <span>Create account</span>
+            <span class="btn__arrow" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="form-status" role="status" aria-live="polite" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-mute);"></div>
+      </form>
+    </div>
+
+  </section>
+</main>
+
+<script src="./js/script.js"></script>
+</body>
+</html>

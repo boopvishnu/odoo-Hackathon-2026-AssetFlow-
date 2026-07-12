@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Reset password · AssetFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./css/forgot.css" />
+</head>
+<body>
+<main class="stage">
+  <aside class="stage__aside">
+    <div class="brand">
+      <span class="brand__mark">AF</span>
+      <span class="brand__name">AssetFlow<span>Enterprise Registry</span></span>
+    </div>
+
+    <div class="showcase" aria-hidden="true">
+      <div class="showcase__head">
+        <span><span class="dot"></span>Recovery desk</span>
+        <span>Avg 4 min</span>
+      </div>
+      <div class="tile"><span class="tile__tag">STEP 1</span><span class="tile__label">Confirm your work email</span><span class="tile__meta">Now</span></div>
+      <div class="tile"><span class="tile__tag">STEP 2</span><span class="tile__label">Check inbox for reset link</span><span class="tile__meta">≤ 5 min</span></div>
+      <div class="tile"><span class="tile__tag">STEP 3</span><span class="tile__label">Set a new password</span><span class="tile__meta">One-time</span></div>
+      <div class="tile"><span class="tile__tag">NOTE</span><span class="tile__label">Old sessions are revoked on reset</span><span class="tile__meta">Audit-logged</span></div>
+    </div>
+
+    <div class="aside-copy">
+      <h1>Forgot your<br/>password?</h1>
+      <p>Enter the work email tied to your ledger. We'll send a one-time recovery link — valid for thirty minutes.</p>
+    </div>
+  </aside>
+
+  <section class="stage__main">
+    <div class="topbar">
+      <span></span>
+      <span>Remembered it? <a href="./login.html">Back to sign in</a></span>
+    </div>
+
+    <div class="form-wrap">
+      <h2 class="title">Reset password.</h2>
+      <p class="lede">We'll email a secure link. If your account is pending activation, an Admin will be notified instead.</p>
+
+      <form class="form" id="forgotForm" data-kind="forgot" novalidate>
+        <div class="field" data-field="email">
+          <label>Work email</label>
+          <input type="email" name="email" required placeholder="priya@company.io" autocomplete="email" />
+          <div class="msg" data-error></div>
+        </div>
+
+        <div class="field" data-field="username">
+          <label>Username <span class="hint">optional</span></label>
+          <input type="text" name="username" maxlength="50" placeholder="p.ramanathan" autocomplete="username" />
+          <div class="msg" data-error></div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn" id="submitBtn">
+            <span>Send reset link</span>
+            <span class="btn__arrow" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="divider">Didn't get the email?</div>
+        <p class="aside-link">Links can take a few minutes to arrive. Requests submitted after 23:30 IST are processed the next working day. Still stuck? Ask your department admin to trigger a manual reset.</p>
+
+        <div class="form-status" role="status" aria-live="polite" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-mute);margin-top:8px;"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script src="./js/script.js"></script>
+</body>
+</html>
