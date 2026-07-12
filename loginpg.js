@@ -11,7 +11,6 @@ function togglePassword() {
     }
 }
 
-// login form submit
 document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -31,10 +30,8 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
 
     console.log("login attempt:", id);
 
-    // TODO: connect this to backend / Odoo later
 });
 
-// remember me checkbox - just logging for now
 var rememberCheckbox = document.getElementById("rememberMe");
 rememberCheckbox.addEventListener("change", function() {
     if (rememberCheckbox.checked) {
