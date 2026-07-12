@@ -15,30 +15,21 @@ def signup(data: SignupRequest):
     db = get_db()
     cursor = db.cursor(dictionary=True)
     try:
-        # 1. Check if username or email already exists
-        cursor.execute("SELECT id FROM users WHERE username = %s OR email = %s", (data.username, data.email))
+        # 1. Check if email already exists (using repo table name 'user')
+        cursor.execute("SELECT id FROM user WHERE email = %s", (data.email,))
         if cursor.fetchone():
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Username or Email already registered."
+                detail="Email already registered."
             )
-        
-        # 2. Verify department_id exists if provided
-        if data.department_id is not None:
-            cursor.execute("SELECT id FROM departments WHERE id = %s", (data.department_id,))
-            if not cursor.fetchone():
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="Invalid department ID."
-                )
 
-        # 3. Hash password and insert user
+        # 2. Hash password and insert user
         pwd_hash = hash_password(data.password)
         query = """
-            INSERT INTO users (fullname, email, username, password_hash, role, department_id)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            INSERT INTO user (name, email, password_hash, role)
+            VALUES (%s, %s, %s, %s)
         """
-        cursor.execute(query, (data.fullname, data.email, data.username, pwd_hash, data.role, data.department_id))
+        cursor.execute(query, (data.fullname, data.email, pwd_hash, data.role))
         db.commit()
         
         return {"status": "Success", "message": "User registered successfully!"}
@@ -60,17 +51,17 @@ def login(data: LoginRequest):
     try:
         pwd_hash = hash_password(data.password)
         query = """
-            SELECT id, fullname, email, username, role, department_id 
-            FROM users 
-            WHERE username = %s AND password_hash = %s
+            SELECT id, name AS fullname, email, role 
+            FROM user 
+            WHERE email = %s AND password_hash = %s
         """
-        cursor.execute(query, (data.username, pwd_hash))
+        cursor.execute(query, (data.username, pwd_hash)) # username field in request contains the email
         user = cursor.fetchone()
         
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Incorrect username or password."
+                detail="Incorrect email or password."
             )
             
         return user

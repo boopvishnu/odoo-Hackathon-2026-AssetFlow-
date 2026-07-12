@@ -5,8 +5,8 @@ from mysql.connector import pooling
 db_config = {
     "host": "localhost",
     "user": "root",
-    "password": "101184",
-    "database": "booking_system"
+    "password": "1234",  # MySQL 8.0 password
+    "database": "assetflow"
 }
 
 try:

@@ -17,9 +17,7 @@ class UserSessionResponse(BaseModel):
     id: int
     fullname: str
     email: str
-    username: str
     role: str
-    department_id: Optional[int]
 
     class Config:
         from_attributes = True # Enables Pydantic to read ORM-like dictionary outputs
