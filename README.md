@@ -97,9 +97,6 @@ odoo -d mydb --dev=all
 
 ---
 
-## Team
-
-**Odoo Hackathon 2026 Participants**
 
 ---
 
