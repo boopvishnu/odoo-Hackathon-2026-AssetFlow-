@@ -1,4 +1,4 @@
--- MySQL DDL script to initialize login and signup schema
+-- MySQL DDL script to initialize Project
 
 CREATE DATABASE IF NOT EXISTS booking_system;
 USE booking_system;
