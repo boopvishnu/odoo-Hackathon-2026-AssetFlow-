@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AssetFlow Login</title>
+    <link rel="stylesheet" href="loginpg.css">
+</head>
+<body>
+
+    <div class="page-wrapper">
+
+        <!-- left side branding -->
+        <div class="brand-panel">
+            <h1 class="brand-logo">AssetFlow</h1>
+            <p class="brand-tagline">Enterprise Asset & Resource Management</p>
+
+            <!-- just some features, can add more later -->
+            <div class="feature-list">
+                <p>📦 Track assets in real time</p>
+                <p>🗓️ Book shared resources</p>
+                <p>🔧 Maintenance workflow</p>
+            </div>
+        </div>
+
+        <!-- right side - login form -->
+        <div class="form-panel">
+            <div class="auth-box">
+                <h2>Welcome back</h2>
+                <p class="sub-text">Login to your account</p>
+
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="text" id="loginId" placeholder="Email / Username" required>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                        <span onclick="togglePassword()" class="toggle-eye" id="toggleEye">show</span>
+                    </div>
+
+                    <div class="form-footer">
+                        <label>
+                            <input type="checkbox" id="rememberMe">
+                            Remember me
+                        </label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+
+                <p class="signup-text">Don't have an account? <a href="#">Sign up</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="loginpg.js"></script>
+</body>
+</html>
